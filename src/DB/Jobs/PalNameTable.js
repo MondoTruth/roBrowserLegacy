@@ -221,6 +221,15 @@ PalNameTable[JobId.SPIRIT_HANDLER] = JobNameTable[JobId.SPIRIT_HANDLER];
 
 PalNameTable[JobId.SKY_EMPEROR2] = JobNameTable[JobId.SKY_EMPEROR2];
 
+// For jobs whose palette files are not named after the sprite: the
+// trans and baby versions use the same palettes as the origin job.
+function duplicatePalette(origin) {
+	const value = PalNameTable[origin];
+	for (let i = 1, count = arguments.length; i < count; ++i) {
+		PalNameTable[arguments[i]] = value;
+	}
+}
+
 function duplicateEntry(origin) {
 	const value = JobNameTable[origin];
 	for (let i = 1, count = arguments.length; i < count; ++i) {
@@ -253,13 +262,13 @@ duplicateEntry(JobId.DANCER, JobId.DANCER_B);
 duplicateEntry(JobId.RUNE_KNIGHT, JobId.RUNE_KNIGHT_H, JobId.RUNE_KNIGHT_B);
 duplicateEntry(JobId.RUNE_KNIGHT2, JobId.RUNE_KNIGHT2_H, JobId.RUNE_KNIGHT2_B);
 duplicateEntry(JobId.WARLOCK, JobId.WARLOCK_H, JobId.WARLOCK_B);
-duplicateEntry(JobId.RANGER, JobId.RANGER_H, JobId.RANGER_B);
-duplicateEntry(JobId.RANGER2, JobId.RANGER2_H, JobId.RANGER2_B);
+duplicatePalette(JobId.RANGER, JobId.RANGER_H, JobId.RANGER_B);
+duplicatePalette(JobId.RANGER2, JobId.RANGER2_H, JobId.RANGER2_B);
 duplicateEntry(JobId.ARCHBISHOP, JobId.ARCHBISHOP_H, JobId.ARCHBISHOP_B);
 duplicateEntry(JobId.MECHANIC, JobId.MECHANIC_H, JobId.MECHANIC_B);
-duplicateEntry(JobId.MECHANIC2, JobId.MECHANIC2_H, JobId.MECHANIC2_B);
+duplicatePalette(JobId.MECHANIC2, JobId.MECHANIC2_H, JobId.MECHANIC2_B);
 duplicateEntry(JobId.GUILLOTINE_CROSS, JobId.GUILLOTINE_CROSS_H, JobId.GUILLOTINE_CROSS_B);
-duplicateEntry(JobId.ROYAL_GUARD, JobId.ROYAL_GUARD_H, JobId.ROYAL_GUARD_B);
+duplicatePalette(JobId.ROYAL_GUARD, JobId.ROYAL_GUARD_H, JobId.ROYAL_GUARD_B);
 duplicateEntry(JobId.ROYAL_GUARD2, JobId.ROYAL_GUARD2_H, JobId.ROYAL_GUARD2_B);
 duplicateEntry(JobId.SORCERER, JobId.SORCERER_H, JobId.SORCERER_B);
 duplicateEntry(JobId.MINSTREL, JobId.MINSTREL_H, JobId.MINSTREL_B);
